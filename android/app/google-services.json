@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "188978478578",
+    "project_id": "rentmed-e3713",
+    "storage_bucket": "rentmed-e3713.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:188978478578:android:14e8193cd4140e5ce23f6b",
+        "android_client_info": {
+          "package_name": "com.med_rent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "188978478578-0r6fnm7ori0up8k1ivnvc45gotlvp2ji.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.med_rent",
+            "certificate_hash": "8d97575bd9ff1cf90ae5d61376934eb20e1e888c"
+          }
+        },
+        {
+          "client_id": "188978478578-5re5h38thkbf5ot25btd1kmgl02htf4e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvJCdC48AyVbBJnYgg2FlemFy0l7IYnkM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "188978478578-5re5h38thkbf5ot25btd1kmgl02htf4e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

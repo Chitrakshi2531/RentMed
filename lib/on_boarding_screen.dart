@@ -5,7 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:async';
 import 'package:dots_indicator/dots_indicator.dart';
-import 'package:med_rent/organizationApp/screens/login_page.dart';
+import 'package:med_rent/organizationApp/screens/login_screen.dart';
+import 'package:med_rent/userApp/screens/authentication/auth_screen.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({Key? key}) : super(key: key);
@@ -106,7 +107,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Theme.of(context).primaryColor,
-                                  fontSize: 30
+                                  fontSize: 30,
                               )
                           ),
                           SizedBox(
@@ -226,9 +227,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                         height: 20,
                                       ),
                                       SizedBox(
-                                        width: 230,
+                                        width: size.width * 0.65,
                                         child: ElevatedButton(
                                             onPressed: (){
+                                              Navigator.pushNamed(context, AuthScreen.id);
                                             },
                                             style: ElevatedButton.styleFrom(
                                               primary: Colors.white,
@@ -248,7 +250,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                         height: 10,
                                       ),
                                       SizedBox(
-                                        width: 230,
+                                        width: size.width * 0.65,
                                         child: ElevatedButton(
                                             onPressed: (){
                                               Navigator.pushNamed(context, LoginPage.id);

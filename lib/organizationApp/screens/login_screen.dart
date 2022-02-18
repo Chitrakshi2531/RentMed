@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:med_rent/organizationApp/screens/register_page.dart';
+import 'package:med_rent/organizationApp/screens/register_screen.dart';
 
 
 
@@ -56,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 SizedBox(
-                  height: size.height * 0.08,
+                  height: size.height * 0.05,
                 ),
                 Center(
                   child: Container(
@@ -150,12 +150,12 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       decoration: BoxDecoration(
                           color: Colors.white.withOpacity(0.2),
-                          borderRadius: const BorderRadius.all(Radius.circular(20)),
+                          borderRadius: const BorderRadius.all(Radius.circular(10)),
                       )
                   ),
                 ),
                 SizedBox(
-                  height: size.height * 0.04,
+                  height: size.height * 0.01,
                 ),
                 TextButton(
                     onPressed: () {},
@@ -168,35 +168,36 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   height: size.height * 0.05,
                 ),
-                Container(
-                  width: 170,
-                  height: 70,
-                  child: TextButton(
-                    onPressed: (){
-                      if(_formKey.currentState!.validate())
-                        {
-                          print('detailed entered');
-                        }
-                    },
-                    child: Text(
-                      'SignIn',
-                       textAlign: TextAlign.start,
-                       style: TextStyle(
-                         color: Theme.of(context).primaryColor,
-                         fontSize: 20,
-                       ),
-                      )
+                Center(
+                  child: SizedBox(
+                    width: 270,
+                    child: ElevatedButton(
+                        onPressed: (){
+                          if(_formKey.currentState!.validate())
+                          {
+                            // Navigator.pushNamed(context, Dashboard.id);
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
+                          padding: EdgeInsets.all(10.0),
+                        ),
+                        child: Center(
+                            child: Text(
+                                'SignIn',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Theme.of(context).primaryColor,
+                                  fontSize: 20,
+                                )
+                            )
+                        )
+
                     ),
-                  decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.8),
-                      borderRadius: const BorderRadius.only(
-                        bottomRight: Radius.circular(50),
-                        topRight: Radius.circular(50),
-                      )
-                  )
+                  ),
                 ),
                 SizedBox(
-                  height: size.height * 0.08,
+                  height: size.height * 0.05,
                 ),
                 Center(
                   child: Row(
@@ -221,6 +222,20 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                 ),
+                SizedBox(
+                  height: 30,
+                ),
+                //TODO add it in footer
+                Center(
+                  child: Text(
+                    'By creating an account, you accept RentMed\'s Terms of Service and Privacy Policy',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                    )
+                  )
+                )
               ]
             ),
           ),

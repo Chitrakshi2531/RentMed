@@ -356,6 +356,18 @@ class _RegisterPageState extends State<RegisterPage> {
                                   )
                               ),
                             ),
+                            SizedBox(
+                              height: 50,
+                            ),
+                            Center(
+                                child: Text(
+                                    'By creating an account, you accept RentMed\'s Terms of Service and Privacy Policy',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Theme.of(context).primaryColor,
+                                    )
+                                )
+                            ),
                           ],
                         )
                     ),
