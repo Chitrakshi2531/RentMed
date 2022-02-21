@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:med_rent/organizationApp/screens/register_screen.dart';
+import 'package:med_rent/organizationApp/controller/auth_service.dart';
+import 'package:med_rent/organizationApp/view/register_screen.dart';
+import 'package:med_rent/userApp/view/authentication/forgot_password.dart';
 
 
 
@@ -14,6 +16,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
+  AuthServices _services = AuthServices();
   late String email;
   late String password;
   bool _passwordVisible = false;
@@ -158,7 +161,9 @@ class _LoginPageState extends State<LoginPage> {
                   height: size.height * 0.01,
                 ),
                 TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context,ForgotPasswordScreen.id);
+                    },
                     child: Text(
                         'forgot password ?',
                          style: TextStyle(
@@ -175,7 +180,7 @@ class _LoginPageState extends State<LoginPage> {
                         onPressed: (){
                           if(_formKey.currentState!.validate())
                           {
-                            // Navigator.pushNamed(context, Dashboard.id);
+                            _services.emailLogin(email, password, context);
                           }
                         },
                         style: ElevatedButton.styleFrom(

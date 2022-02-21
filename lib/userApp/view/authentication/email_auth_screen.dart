@@ -1,4 +1,9 @@
+import 'package:email_validator/email_validator.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:med_rent/userApp/view/authentication/forgot_password.dart';
+import 'package:med_rent/userApp/controller/email_auth_services.dart';
+import 'forgot_password.dart';
 
 class EmailAuthScreen extends StatefulWidget {
   const EmailAuthScreen({Key? key}) : super(key: key);
@@ -12,7 +17,27 @@ class _EmailAuthScreenState extends State<EmailAuthScreen> {
   final _formKey = GlobalKey<FormState>();
   late String email;
   late String password;
+  bool _login = true;
+  bool _validate = false;
   bool _passwordVisible = false;
+  bool _loading = false;
+  EmailAuthentication _services = EmailAuthentication();
+
+  void _validateEmail() {
+    if(_formKey.currentState!.validate()){
+      setState(() {
+        _validate = false;
+        _loading = true;
+      });
+      _services.gerAdminCredential(email, password, context, _login).then((value){
+        setState(() {
+          _loading = false;
+        });
+      });
+    }
+
+  }
+
   @override
   void initState(){
     super.initState();
@@ -46,7 +71,7 @@ class _EmailAuthScreenState extends State<EmailAuthScreen> {
                 height: 20,
               ),
               Text(
-                'Sign in to your Account',
+                '${_login ? 'Sign in to your Account' : 'Enter Email and Password to Register'}',
                 style: TextStyle(
                   color: Colors.white,
                 ),
@@ -72,6 +97,11 @@ class _EmailAuthScreenState extends State<EmailAuthScreen> {
                                     {
                                       return 'This field is required';
                                     }
+                                    final bool isvalid = EmailValidator.validate(value);
+                                    if(value.isNotEmpty && isvalid == false)
+                                      {
+                                        return 'Enter valid Email';
+                                      }
                                     setState((){
                                       email = value;
                                     });
@@ -109,6 +139,20 @@ class _EmailAuthScreenState extends State<EmailAuthScreen> {
                                       password = value;
                                     });
                                     return null;
+                                  },
+                                  onChanged: (value){
+                                    if(value.isNotEmpty){
+                                      if(value.length >= 8)
+                                        {
+                                          setState(() {
+                                            _validate = true;
+                                          });
+                                        }
+                                      else
+                                        setState(() {
+                                          _validate = false;
+                                        });
+                                    }
                                   },
                                   keyboardType: TextInputType.text,
                                   obscureText: !_passwordVisible,
@@ -154,7 +198,9 @@ class _EmailAuthScreenState extends State<EmailAuthScreen> {
                 height: size.height * 0.01,
               ),
               TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context,ForgotPasswordScreen.id);
+                  },
                   child: Text(
                     'forgot password ?',
                     style: TextStyle(
@@ -168,14 +214,18 @@ class _EmailAuthScreenState extends State<EmailAuthScreen> {
                 child: SizedBox(
                   width: 270,
                   child: ElevatedButton(
-                      onPressed: (){},
+                      onPressed: (){
+                        _validateEmail();
+                      },
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
+                        primary: _validate ? Colors.white : Colors.white.withOpacity(0.2),
                         padding: EdgeInsets.all(10.0),
                       ),
                       child: Center(
-                          child: Text(
-                              'SignIn',
+                          child: _loading? CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor),
+                          ) : Text(
+                              '${_login ? 'SignIn' : 'Register'}',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Theme.of(context).primaryColor,
@@ -195,17 +245,19 @@ class _EmailAuthScreenState extends State<EmailAuthScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Don\'t have an Account ?',
+                      '${_login ? 'Don\'t': 'Already'} have an Account ?',
                       style: TextStyle(
                         color: Colors.white,
                       ),
                     ),
                     TextButton(
                         onPressed: () {
-                          // Navigator.pushNamed(context, RegisterPage.id);
+                          setState(() {
+                            _login = !_login;
+                          });
                         },
                         child: Text(
-                          'SignUp',
+                          '${_login?'SignUp':'SignIn'}',
                           style: TextStyle(
                             color: Colors.white,
                           ),
@@ -231,4 +283,5 @@ class _EmailAuthScreenState extends State<EmailAuthScreen> {
       ),
     );
   }
+
 }

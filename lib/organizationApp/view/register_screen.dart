@@ -1,3 +1,4 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
 import 'dashboard_screen.dart';
@@ -88,6 +89,11 @@ class _RegisterPageState extends State<RegisterPage> {
                                   if(value == null || value.isEmpty)
                                   {
                                     return 'This field is required';
+                                  }
+                                  final bool isvalid = EmailValidator.validate(value);
+                                  if(value.isNotEmpty && isvalid == false)
+                                  {
+                                    return 'Enter valid Email';
                                   }
                                   setState((){
                                     email = value;

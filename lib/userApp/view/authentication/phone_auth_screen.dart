@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:med_rent/userApp/screens/authentication/email_auth_screen.dart';
-import 'package:med_rent/userApp/services/phoneauth_services.dart';
+import 'package:med_rent/userApp/view/authentication/email_auth_screen.dart';
+import 'package:med_rent/userApp/controller/phoneauth_services.dart';
 
 class PhoneAuthScreen extends StatefulWidget {
   const PhoneAuthScreen({Key? key}) : super(key: key);
@@ -25,7 +25,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
   @override
   Widget build(BuildContext context) {
 
-
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -36,7 +36,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
       ),
       body: Center(
         child: Container(
-          width: 280,
+          width: size.width * 0.8,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -109,7 +109,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: 60,),
+              SizedBox(height: size.height * 0.2,),
               Center(
                 child: SizedBox(
                   width: 270,
@@ -121,7 +121,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                           print(number);
                          _service.showAlertDialog(context,'Sending OTP');
                          _service.verifyPhoneNumber(context, number);
-                         Navigator.pop(context);
+                         // Navigator.pop(context);
                         },
                         style: ElevatedButton.styleFrom(
                           primary: validate == true ? Theme.of(context).primaryColor : Colors.grey,

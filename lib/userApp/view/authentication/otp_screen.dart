@@ -1,10 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-
-import 'package:flutter/services.dart';
-import 'package:med_rent/userApp/services/phoneauth_services.dart';
-import 'package:med_rent/userApp/screens/authentication/phone_auth_screen.dart';
+import 'package:med_rent/userApp/controller/phoneauth_services.dart';
+import 'package:med_rent/userApp/view/authentication/phone_auth_screen.dart';
 
 import '../home_Screen.dart';
 
@@ -29,35 +27,7 @@ class _OTPScreenState extends State<OTPScreen> {
   String error = "";
   PhoneAuthServices _services = PhoneAuthServices();
 
-  Future<void> phoneCredential(BuildContext context, String otp) async {
-    FirebaseAuth _auth = FirebaseAuth.instance;
-    try{
-      PhoneAuthCredential credential = PhoneAuthProvider.credential(
-        verificationId: widget.verId,smsCode: otp);
 
-      final User? user = (await _auth.signInWithCredential(credential)).user;
-
-      if(user != null){
-        _services.addUser(context,user.uid);
-      }
-      else{
-        print('login Failed');
-        if(mounted){
-          setState((){
-            error = 'Login Failed';
-          });
-        }
-      }
-    }
-    catch(e){
-      print(e.toString());
-      if(mounted){
-        setState((){
-          error = 'Invalid OTP';
-        });
-      }
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -274,7 +244,7 @@ class _OTPScreenState extends State<OTPScreen> {
                                     setState(() {
                                       _loading = true;
                                     });
-                                    phoneCredential(context,_otp);
+                                    _services.phoneCredential(context,_otp,widget.verId);
                                   }
                                 }
                               }

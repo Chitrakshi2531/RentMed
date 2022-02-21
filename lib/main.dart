@@ -2,18 +2,19 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/services.dart';
 import 'package:med_rent/on_boarding_screen.dart';
-import 'package:med_rent/organizationApp/screens/dashboard_screen.dart';
-import 'package:med_rent/userApp/screens/authentication/auth_screen.dart';
-import 'package:med_rent/userApp/screens/authentication/email_auth_screen.dart';
-import 'package:med_rent/userApp/screens/authentication/phone_auth_screen.dart';
-import 'package:med_rent/userApp/screens/authentication/otp_screen.dart';
-import 'package:med_rent/userApp/screens/home_Screen.dart';
+import 'package:med_rent/organizationApp/view/dashboard_screen.dart';
+import 'package:med_rent/userApp/view/authentication/auth_screen.dart';
+import 'package:med_rent/userApp/view/authentication/email_auth_screen.dart';
+import 'package:med_rent/userApp/view/authentication/email_verification_screen.dart';
+import 'package:med_rent/userApp/view/authentication/forgot_password.dart';
+import 'package:med_rent/userApp/view/authentication/phone_auth_screen.dart';
+import 'package:med_rent/userApp/view/home_Screen.dart';
 
-import 'organizationApp/screens/login_screen.dart';
-import 'organizationApp/screens/register_screen.dart';
+import 'organizationApp/view/login_screen.dart';
+import 'organizationApp/view/register_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,6 +42,8 @@ class MyApp extends StatelessWidget {
         //common screens
         SplashScreen.id: (context) => const SplashScreen(),
         OnBoardingScreen.id: (context) => const OnBoardingScreen(),
+        EmailVerificationScreen.id: (context) => const EmailVerificationScreen(),
+        ForgotPasswordScreen.id: (context) => const ForgotPasswordScreen(),
 
         //organization screens
         LoginPage.id: (context) => const LoginPage(),
@@ -52,6 +55,8 @@ class MyApp extends StatelessWidget {
         EmailAuthScreen.id: (context) => const EmailAuthScreen(),
         PhoneAuthScreen.id: (context) => const PhoneAuthScreen(),
         HomeScreen.id: (context) => const HomeScreen(),
+
+
       },
     );
   }

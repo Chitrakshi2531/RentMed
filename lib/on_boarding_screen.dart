@@ -5,8 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:async';
 import 'package:dots_indicator/dots_indicator.dart';
-import 'package:med_rent/organizationApp/screens/login_screen.dart';
-import 'package:med_rent/userApp/screens/authentication/auth_screen.dart';
+import 'package:med_rent/organizationApp/view/login_screen.dart';
+import 'package:med_rent/userApp/view/authentication/auth_screen.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({Key? key}) : super(key: key);
