@@ -1,14 +1,60 @@
 
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:med_rent/organizationApp/view/dashboard_screen.dart';
 import 'package:open_mail_app/open_mail_app.dart';
 import 'package:med_rent/userApp/view/home_Screen.dart';
 
 
-class EmailVerificationScreen extends StatelessWidget {
+class EmailVerificationScreen extends StatefulWidget {
   static const String id = 'email_verification_screen';
-  const EmailVerificationScreen({Key? key}) : super(key: key);
+  final bool isorg;
+  const EmailVerificationScreen({required this.isorg});
 
+  @override
+  State<EmailVerificationScreen> createState() => _EmailVerificationScreenState();
+}
+
+class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
+  bool _isverified = false;
+  Timer? timer;
+  @override
+  void initState()
+  {
+    super.initState();
+    timer = Timer.periodic(
+      Duration(seconds: 3),
+        (_) => checkEmailVerified(),
+    );
+  }
+
+  checkEmailVerified() async {
+    await FirebaseAuth.instance.currentUser!.reload();
+
+    if(FirebaseAuth.instance.currentUser!.emailVerified) {
+      setState(() {
+        _isverified = true;
+      });
+    }
+    if(_isverified) {
+      if(widget.isorg)
+        {
+          Navigator.pushNamedAndRemoveUntil(context, Dashboard.id, (route) => false);
+        }
+      else{
+        Navigator.pushNamedAndRemoveUntil(context, HomeScreen.id, (route) => false);
+      }
+      timer?.cancel();
+    }
+  }
+
+  @override
+  void dispose(){
+    timer?.cancel();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -56,9 +102,7 @@ class EmailVerificationScreen extends StatelessWidget {
                             },
                           );
                         }
-                        if(FirebaseAuth.instance.currentUser!.emailVerified)
-                          Navigator.pushReplacementNamed(context, HomeScreen.id);
-                      },
+                        },
                       style: ElevatedButton.styleFrom(
                         primary: Theme.of(context).primaryColor,
                         padding: EdgeInsets.all(10.0),
@@ -104,4 +148,6 @@ class EmailVerificationScreen extends StatelessWidget {
       },
     );
   }
+
+
 }

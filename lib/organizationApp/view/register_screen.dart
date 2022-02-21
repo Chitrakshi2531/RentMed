@@ -1,5 +1,7 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:med_rent/Model/organizationModel.dart';
+import 'package:med_rent/organizationApp/controller/auth_service.dart';
 
 import 'dashboard_screen.dart';
 
@@ -12,6 +14,8 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
+
+  AuthServices _services = AuthServices();
   late String organizationName;
   late String email;
   late String password;
@@ -346,9 +350,16 @@ class _RegisterPageState extends State<RegisterPage> {
                                   onPressed: (){
                                     if(_formKey.currentState!.validate())
                                     {
-                                      Navigator.pushNamed(context, Dashboard.id);
+                                     OrganizationModel org = OrganizationModel(
+                                         organizationName,
+                                         email,
+                                         address,
+                                         contactNumber,
+                                         pincode,
+                                         city,
+                                         state,);
+                                     _services.emailRegister(email,password,context,org);
                                     }
-
                                   },
                                   style: ElevatedButton.styleFrom(
                                     padding: EdgeInsets.fromLTRB(20, 10, 20, 10),

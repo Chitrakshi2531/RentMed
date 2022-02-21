@@ -42,7 +42,6 @@ class MyApp extends StatelessWidget {
         //common screens
         SplashScreen.id: (context) => const SplashScreen(),
         OnBoardingScreen.id: (context) => const OnBoardingScreen(),
-        EmailVerificationScreen.id: (context) => const EmailVerificationScreen(),
         ForgotPasswordScreen.id: (context) => const ForgotPasswordScreen(),
 
         //organization screens

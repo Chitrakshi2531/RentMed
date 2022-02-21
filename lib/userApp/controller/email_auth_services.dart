@@ -59,13 +59,14 @@ class EmailAuthentication{
       if(userCredential.user!.uid != null)
         { //adding data to cloud firestore
           return users.doc(userCredential.user!.uid).set({
-            'email':userCredential.user!.email,
-            'uid' : userCredential.user!.uid
+            'email': userCredential.user!.email,
+            'mobile': userCredential.user!.phoneNumber,
+            'uid' : userCredential.user!.uid,
           }).then((value) async{
 
             //email verification
             await userCredential.user!.sendEmailVerification().then((value) {
-              Navigator.pushNamedAndRemoveUntil(context, EmailVerificationScreen.id, (route) => false);
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => EmailVerificationScreen(isorg: false),),);
             });
 
 

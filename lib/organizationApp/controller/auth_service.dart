@@ -57,13 +57,19 @@ class AuthServices{
         if(userCredential.user!.uid != null)
         { //adding data to cloud firestore
           return organizations.doc(userCredential.user!.uid).set({
-            'email':userCredential.user!.email,
-            'uid' : userCredential.user!.uid,
+              'organizationName': organizationModel.organizationName,
+              'email': userCredential.user!.email,
+              'uid' : userCredential.user!.uid,
+              'address': organizationModel.address,
+              'contactNumber': organizationModel.contactNumber,
+              'pincode': organizationModel.pincode,
+              'city': organizationModel.city,
+              'state': organizationModel.state,
           }).then((value) async{
 
             //email verification
             await userCredential.user!.sendEmailVerification().then((value) {
-              Navigator.pushNamedAndRemoveUntil(context, EmailVerificationScreen.id, (route) => false);
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => EmailVerificationScreen(isorg: true),),);
             });
 
 
