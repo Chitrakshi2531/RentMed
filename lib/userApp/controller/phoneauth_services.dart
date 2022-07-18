@@ -3,11 +3,9 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:med_rent/userApp/view/authentication/otp_screen.dart';
-import 'package:med_rent/userApp/view/home_Screen.dart';
-
+import 'package:med_rent/userApp/view/home.dart';
 class PhoneAuthServices{
     FirebaseAuth auth = FirebaseAuth.instance;
     User? user = FirebaseAuth.instance.currentUser;
@@ -20,7 +18,7 @@ class PhoneAuthServices{
       List <DocumentSnapshot> document = result.docs;
 
         if(document.length > 0){
-          Navigator.pushNamedAndRemoveUntil(context, HomeScreen.id, (route) => false);
+          Navigator.pushNamedAndRemoveUntil(context, Home.id, (route) => false);
         }
         else{
           return users.doc(user!.uid).set({
@@ -29,7 +27,7 @@ class PhoneAuthServices{
             'email': user!.email,
           })
               .then((value) {
-            Navigator.pushNamedAndRemoveUntil(context, HomeScreen.id, (route) => false);
+            Navigator.pushNamedAndRemoveUntil(context, Home.id, (route) => false);
           })
 
               .catchError((error) => print('Failed to add user: $error'));

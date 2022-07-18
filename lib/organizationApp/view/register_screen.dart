@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:med_rent/Model/organizationModel.dart';
 import 'package:med_rent/organizationApp/controller/auth_service.dart';
 
-import 'dashboard_screen.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -120,6 +119,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 )
                             ),
                             TextFormField(
+                                maxLength: 10,
                                 keyboardType: TextInputType.phone,
                                 style: TextStyle(color: Theme.of(context).primaryColor),
                                 validator: (value) {
@@ -153,10 +153,19 @@ class _RegisterPageState extends State<RegisterPage> {
                                   {
                                     return 'This field is required';
                                   }
+                                  if(value.isNotEmpty){
+                                    if(value.length < 8)
+                                    {
+                                      return 'Password must be at least 8 characters';
+                                    }
+                                  }
                                   setState((){
                                     password = value;
                                   });
                                   return null;
+                                },
+                                onChanged: (value){
+
                                 },
                                 keyboardType: TextInputType.text,
                                 obscureText: !_passwordVisible,
@@ -194,6 +203,10 @@ class _RegisterPageState extends State<RegisterPage> {
                                   {
                                     return 'This field is required';
                                   }
+                                  if(value != password)
+                                    {
+                                      return 'password does not match';
+                                    }
                                   setState((){
                                     confirmPassword = value;
                                   });
@@ -231,6 +244,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                             TextFormField(
                                 keyboardType: TextInputType.number,
+                                maxLength: 6,
                                 style: TextStyle(color: Theme.of(context).primaryColor),
                                 validator: (value) {
                                   if(value == null || value.isEmpty)

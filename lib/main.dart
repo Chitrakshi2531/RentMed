@@ -1,24 +1,26 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:med_rent/on_boarding_screen.dart';
-import 'package:med_rent/organizationApp/view/dashboard_screen.dart';
-import 'package:med_rent/userApp/view/authentication/auth_screen.dart';
-import 'package:med_rent/userApp/view/authentication/email_auth_screen.dart';
-import 'package:med_rent/userApp/view/authentication/email_verification_screen.dart';
-import 'package:med_rent/userApp/view/authentication/forgot_password.dart';
-import 'package:med_rent/userApp/view/authentication/phone_auth_screen.dart';
-import 'package:med_rent/userApp/view/home_Screen.dart';
-
-import 'organizationApp/view/login_screen.dart';
-import 'organizationApp/view/register_screen.dart';
+import 'package:med_rent/organizationApp/controller/equipment_provider.dart';
+import 'package:med_rent/organizationApp/view/dashboard.dart';
+import 'package:med_rent/userApp/view/home.dart';
+import 'package:med_rent/routes/routes.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+  runApp(
+      ChangeNotifierProvider(
+        create: (context) => EquipmentProvider(),
+        child: const MyApp()
+      )
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -38,25 +40,7 @@ class MyApp extends StatelessWidget {
         )
       ),
       initialRoute: SplashScreen.id,
-      routes: {
-        //common screens
-        SplashScreen.id: (context) => const SplashScreen(),
-        OnBoardingScreen.id: (context) => const OnBoardingScreen(),
-        ForgotPasswordScreen.id: (context) => const ForgotPasswordScreen(),
-
-        //organization screens
-        LoginPage.id: (context) => const LoginPage(),
-        RegisterPage.id: (context) => const RegisterPage(),
-        Dashboard.id: (context) => const Dashboard(),
-
-        // user screens
-        AuthScreen.id: (context) => const AuthScreen(),
-        EmailAuthScreen.id: (context) => const EmailAuthScreen(),
-        PhoneAuthScreen.id: (context) => const PhoneAuthScreen(),
-        HomeScreen.id: (context) => const HomeScreen(),
-
-
-      },
+      routes: routes,
     );
   }
 }
@@ -90,12 +74,19 @@ class _SplashScreenState extends State<SplashScreen> {
     initializedFlutterFire();
     Timer(const Duration(seconds: 3),
         () {
-          // FirebaseAuth.instance.authStateChanges().listen((User? user) {
-          //   if(user == null)
-          //     Navigator.pushReplacementNamed(context, PhoneAuthScreen.id);
-          //   else
-          //   Navigator.pushReplacementNamed(context, OnBoardingScreen.id);});
-          Navigator.pushReplacementNamed(context, OnBoardingScreen.id);
+          FirebaseAuth.instance.authStateChanges().listen((User? user) async{
+            if(user == null)
+              Navigator.pushReplacementNamed(context, OnBoardingScreen.id);
+            else{
+              CollectionReference users = FirebaseFirestore.instance.collection('organizations');
+              DocumentSnapshot _result = await users.doc(user.uid).get();
+              if(_result.exists)
+                Navigator.pushReplacementNamed(context, Dashboard.id);
+              else
+                Navigator.pushReplacementNamed(context, Home.id);
+            }
+            });
+          // Navigator.pushReplacementNamed(context, OnBoardingScreen.id);
         });
     super.initState();
   }
@@ -112,7 +103,8 @@ class _SplashScreenState extends State<SplashScreen> {
               fontSize: 30,
             )
           ),)
-        )
+        ),
+        builder: EasyLoading.init(),
       );
     }
     if(!_initialized){

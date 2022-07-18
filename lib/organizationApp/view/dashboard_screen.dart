@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
 
-
-class Dashboard extends StatefulWidget {
-  const Dashboard({Key? key}) : super(key: key);
+class DashboardScreen extends StatefulWidget {
+  const DashboardScreen({Key? key}) : super(key: key);
   static const String id = 'dashboard_screen';
+
   @override
-  _DashboardState createState() => _DashboardState();
+  State<DashboardScreen> createState() => _DashboardScreenState();
 }
 
-class _DashboardState extends State<Dashboard> {
+class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Dash'),
+        backgroundColor: Theme.of(context).primaryColor,
+      ),
       body: Center(
-        child: Text('dashboard'),
+        child: Text('Dashboard'),
       ),
     );
   }

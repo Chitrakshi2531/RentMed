@@ -3,9 +3,9 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:med_rent/organizationApp/view/dashboard_screen.dart';
+import 'package:med_rent/organizationApp/view/dashboard.dart';
+import 'package:med_rent/userApp/view/home.dart';
 import 'package:open_mail_app/open_mail_app.dart';
-import 'package:med_rent/userApp/view/home_Screen.dart';
 
 
 class EmailVerificationScreen extends StatefulWidget {
@@ -39,14 +39,14 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
       });
     }
     if(_isverified) {
+      timer?.cancel();
       if(widget.isorg)
         {
           Navigator.pushNamedAndRemoveUntil(context, Dashboard.id, (route) => false);
         }
       else{
-        Navigator.pushNamedAndRemoveUntil(context, HomeScreen.id, (route) => false);
+        Navigator.pushNamedAndRemoveUntil(context, Home.id, (route) => false);
       }
-      timer?.cancel();
     }
   }
 

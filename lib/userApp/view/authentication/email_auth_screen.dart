@@ -1,5 +1,4 @@
 import 'package:email_validator/email_validator.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:med_rent/userApp/view/authentication/forgot_password.dart';
 import 'package:med_rent/userApp/controller/email_auth_services.dart';
@@ -135,6 +134,12 @@ class _EmailAuthScreenState extends State<EmailAuthScreen> {
                                     {
                                       return 'This field is required';
                                     }
+                                    if(value.isNotEmpty){
+                                      if(value.length < 8)
+                                      {
+                                        return 'Password must be at least 8 characters';
+                                      }
+                                    }
                                     setState((){
                                       password = value;
                                     });
@@ -218,7 +223,7 @@ class _EmailAuthScreenState extends State<EmailAuthScreen> {
                         _validateEmail();
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: _validate ? Colors.white : Colors.white.withOpacity(0.2),
+                        primary: _validate ? Colors.white : Colors.white.withOpacity(0.3),
                         padding: EdgeInsets.all(10.0),
                       ),
                       child: Center(

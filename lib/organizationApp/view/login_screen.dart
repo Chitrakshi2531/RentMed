@@ -20,6 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   late String email;
   late String password;
   bool _passwordVisible = false;
+  bool _validate = false;
   @override
   void initState(){
     super.initState();
@@ -108,15 +109,35 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               TextFormField(
                                   validator: (value){
-                                  if(value == null || value.isEmpty)
-                                  {
-                                    return 'This field is required';
-                                  }
-                                  setState((){
-                                    password = value;
-                                  });
-                                  return null;
-                                },
+                                    if(value == null || value.isEmpty)
+                                    {
+                                      return 'This field is required';
+                                    }
+                                    if(value.isNotEmpty){
+                                      if(value.length < 8)
+                                      {
+                                        return 'Password must be at least 8 characters';
+                                      }
+                                    }
+                                    setState((){
+                                      password = value;
+                                    });
+                                    return null;
+                                  },
+                                  onChanged: (value){
+                                    if(value.isNotEmpty){
+                                      if(value.length >= 8)
+                                      {
+                                        setState(() {
+                                          _validate = true;
+                                        });
+                                      }
+                                      else
+                                        setState(() {
+                                          _validate = false;
+                                        });
+                                    }
+                                  },
                                   keyboardType: TextInputType.text,
                                   obscureText: !_passwordVisible,
                                   style: TextStyle(color: Colors.white),
@@ -184,7 +205,7 @@ class _LoginPageState extends State<LoginPage> {
                           }
                         },
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.white,
+                          primary:  _validate ? Colors.white : Colors.white.withOpacity(0.3),
                           padding: EdgeInsets.all(10.0),
                         ),
                         child: Center(

@@ -3,12 +3,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:med_rent/organizationApp/view/dashboard_screen.dart';
+import 'package:med_rent/organizationApp/view/dashboard.dart';
 import 'package:med_rent/userApp/view/authentication/email_verification_screen.dart';
 
 class AuthServices{
 
-  CollectionReference organizations = FirebaseFirestore.instance.collection('Organizations');
+  CollectionReference organizations = FirebaseFirestore.instance.collection('organizations');
 
 
   void emailLogin(email, password,context) async{
@@ -98,7 +98,7 @@ class AuthServices{
       }catch(e){
         ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
-              content: Text('Error occourd'),
+              content: Text('Error occurred'),
             )
         );
         print(e);
