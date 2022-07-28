@@ -26,10 +26,10 @@ class _EquipmentCardState extends State<EquipmentCard> {
             Padding(
               padding: EdgeInsets.only(
                 left: 10,
-                right: size.width * 0.05,
+                right: size.width * 0.04,
               ),
               child: SizedBox(
-                width: size.width * 0.3,
+                width: size.width * 0.2,
                 child: Image.network(widget.equipment['equipmentImage']),
               ),
             ),
@@ -47,7 +47,7 @@ class _EquipmentCardState extends State<EquipmentCard> {
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 24,
+                            fontSize: 20,
                             fontWeight: FontWeight.bold),
                       ),
                       ),

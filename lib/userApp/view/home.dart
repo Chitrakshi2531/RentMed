@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:med_rent/userApp/view/categories.dart';
 import 'package:med_rent/userApp/view/home_Screen.dart';
 import 'package:fluid_bottom_nav_bar/fluid_bottom_nav_bar.dart';
 import 'package:med_rent/userApp/view/settings_screen.dart';
@@ -29,22 +30,19 @@ class _HomeState extends State<Home> {
       bottomNavigationBar: FluidNavBar(
         icons: [
           FluidNavBarIcon(
-            icon: Icons.dashboard_outlined,
+            icon: Icons.home,
           ),
           FluidNavBarIcon(
-            icon: Icons.dashboard_outlined,
+            icon: Icons.list_alt,
           ),
           FluidNavBarIcon(
-            icon: Icons.dashboard_outlined,
-          ),
-          FluidNavBarIcon(
-            icon: Icons.dashboard_outlined,
+            icon: Icons.settings,
           ),
         ],
         onChange: _handleNavigationChange,
         style: FluidNavBarStyle(
           barBackgroundColor: Theme.of(context).primaryColor,
-          iconSelectedForegroundColor: Theme.of(context).primaryColor,
+          iconSelectedForegroundColor: Colors.white,
           iconUnselectedForegroundColor: Colors.white,
         ),
 
@@ -58,7 +56,7 @@ class _HomeState extends State<Home> {
           _child = HomeScreen();
           break;
         case 1:
-          _child = HomeScreen();
+          _child = Categories();
           break;
         case 2:
           _child = UserSettings();

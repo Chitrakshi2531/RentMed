@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:med_rent/Model/category.dart';
 import 'package:med_rent/organizationApp/controller/equipment_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -20,14 +21,7 @@ class _AddNewProductState extends State<AddNewProduct> {
 
 
   final _formKey = GlobalKey<FormState>();
-  final List<String> _categories = <String>[
-    'Category 1',
-    'Category 2',
-    'Category 3',
-    'Category 4',
-    'Category 5',
-    'Category 6'
-  ];
+  final List<String> _categories = Category().categories;
   late String equipmentName;
   late double rent;
   late int quantity;

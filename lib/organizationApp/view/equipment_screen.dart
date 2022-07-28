@@ -38,9 +38,9 @@ class _EquipmentScreenState extends State<EquipmentScreen> {
         ),
         child: FloatingActionButton(
             elevation: 0.0,
-            child: const Icon(
+            child: Icon(
                 Icons.add,
-                color: Colors.cyan,
+                color: Theme.of(context).primaryColor,
                 size: 40,
             ),
             backgroundColor: Colors.white,
@@ -49,6 +49,7 @@ class _EquipmentScreenState extends State<EquipmentScreen> {
             }
         ),
       ),
+
     );
   }
 }
