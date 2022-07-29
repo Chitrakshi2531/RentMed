@@ -24,16 +24,15 @@ class _EquipmentCardState extends State<EquipmentCard> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              width: 200,
+              width: 180,
               height: 150,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: Colors.cyan.shade600,),
+                color: Theme.of(context).primaryColor.withOpacity(0.5),),
               child: Container(
                 margin: EdgeInsets.fromLTRB(6, 6, 6, 6),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Colors.cyan.shade600,
                   image: DecorationImage(
                     image: NetworkImage(widget.equipment['equipmentImage'],),
                     fit: BoxFit.fill,

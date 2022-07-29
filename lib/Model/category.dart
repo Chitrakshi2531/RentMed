@@ -1,9 +1,26 @@
-class Category{
-  List<String> categories =
-    ["Category 1",
-    "Category 2",
-    "Category 3",
-    "Category 4",
-    "Category 5"];
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+class Category{
+  List<String> categories = [
+    "General",
+    "Mobility",
+    "Consumable & Disposable",
+    "Lab Instruments",
+    "Medical Devices",
+    "Medicines",
+    "Dental",
+    "Medical Implants",
+    "Surgical Instruments",
+  ];
+  List icons = [
+    FontAwesomeIcons.handHoldingMedical,
+    FontAwesomeIcons.wheelchair,
+    FontAwesomeIcons.bandage,
+    FontAwesomeIcons.flaskVial,
+    FontAwesomeIcons.microscope,
+    FontAwesomeIcons.pills,
+    FontAwesomeIcons.tooth,
+    FontAwesomeIcons.heartPulse,
+    FontAwesomeIcons.maskFace,
+  ];
 }

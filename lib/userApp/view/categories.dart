@@ -33,18 +33,22 @@ class _CategoriesState extends State<Categories> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Card(
+                  elevation: 5,
                   margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
-                   child: ListTile(
-                     title: Hero(
-                       tag: _categories[index],
-                       child: Container(
-                         child: DefaultTextStyle(
-                           style: TextStyle(
-                             color: Theme.of(context).primaryColor,
-                             fontSize: 28,
-                           ),
-                           child: Text(
-                             _categories[index],
+                   child: Padding(
+                     padding: const EdgeInsets.all(10.0),
+                     child: ListTile(
+                       title: Hero(
+                         tag: _categories[index],
+                         child: Container(
+                           child: DefaultTextStyle(
+                             style: TextStyle(
+                               color: Theme.of(context).primaryColor,
+                               fontSize: 28,
+                             ),
+                             child: Text(
+                               _categories[index],
+                             ),
                            ),
                          ),
                        ),

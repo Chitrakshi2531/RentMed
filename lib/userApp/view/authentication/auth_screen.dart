@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_signin_button/button_list.dart';
-import 'package:flutter_signin_button/button_view.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:med_rent/userApp/view/authentication/email_auth_screen.dart';
 import 'package:med_rent/userApp/controller/google_auth_services.dart';
 import 'package:med_rent/userApp/view/authentication/phone_auth_screen.dart';
@@ -105,23 +104,56 @@ class AuthScreen extends StatelessWidget {
                               ),
                               SizedBox(
                                 width: size.width * 0.7,
-                                height: 44,
-                                child: SignInButton(
-                                    Buttons.Google,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5.0),
-                                    ),
-                                    text: ('Continue with Google'),
-                                    onPressed: () async{
-                                      User? user = await GoogleAuthentication.signInWithGoogle(context: context);
-                                      if(user != null)
-                                        {
-                                          PhoneAuthServices _authentication = PhoneAuthServices();
-                                          _authentication.addUser(context, user.uid);
-                                        }
-
-                                    }),
+                                child: Center(
+                                  child: ElevatedButton(
+                                      onPressed: ()async{
+                                        User? user = await GoogleAuthentication.signInWithGoogle(context: context);
+                                                if(user != null)
+                                                  {
+                                                    PhoneAuthServices _authentication = PhoneAuthServices();
+                                                    _authentication.addUser(context, user.uid);
+                                                  }
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        primary: Colors.white,
+                                        padding: EdgeInsets.all(10.0),
+                                      ),
+                                      child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(left: 10,right: 10),
+                                              child: FaIcon(FontAwesomeIcons.google,color:Colors.black)
+                                            ),
+                                            SizedBox( width: 8,),
+                                            Text('Continue with Google',
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                )
+                                            )
+                                          ]
+                                      )),
+                                ),
                               ),
+                              // SizedBox(
+                              //   width: size.width * 0.7,
+                              //   height: 44,
+                              //   child: SignInButton(
+                              //       Buttons.Google,
+                              //       shape: RoundedRectangleBorder(
+                              //         borderRadius: BorderRadius.circular(5.0),
+                              //       ),
+                              //       text: ('Continue with Google'),
+                              //       onPressed: () async{
+                              //         User? user = await GoogleAuthentication.signInWithGoogle(context: context);
+                              //         if(user != null)
+                              //           {
+                              //             PhoneAuthServices _authentication = PhoneAuthServices();
+                              //             _authentication.addUser(context, user.uid);
+                              //           }
+                              //
+                              //       }),
+                              // ),
 
                             ]
                         ),

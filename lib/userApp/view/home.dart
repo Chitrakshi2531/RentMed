@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:med_rent/userApp/view/categories.dart';
-import 'package:med_rent/userApp/view/home_Screen.dart';
+import 'package:med_rent/userApp/view/home_screen/home_Screen.dart';
 import 'package:fluid_bottom_nav_bar/fluid_bottom_nav_bar.dart';
 import 'package:med_rent/userApp/view/settings_screen.dart';
 

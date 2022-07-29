@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:med_rent/organizationApp/controller/firebase_services.dart';
+import 'package:med_rent/userApp/view/equipment_details.dart';
 import 'package:med_rent/userApp/view/widget/equipment_card.dart';
 
 class EquipmentList extends StatefulWidget {
@@ -31,10 +32,17 @@ class _EquipmentListState extends State<EquipmentList> {
               child: GridView.count(
                 childAspectRatio:size.width/(size.height/1.45),
                 crossAxisCount: 2,
-                crossAxisSpacing: 0,
-                mainAxisSpacing: 0,
+                crossAxisSpacing: 1,
+                mainAxisSpacing: 6,
                 children: snapshot.data!.docs.map((document) {
-                  return Expanded(child: EquipmentCard(equipment: document));
+                  return Expanded(
+                      child: InkWell(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => EquipmentDetails( equipment: document,),),);
+                          },
+                          child: EquipmentCard(equipment: document)
+                      )
+                  );
                 }).toList()
                ),
             );

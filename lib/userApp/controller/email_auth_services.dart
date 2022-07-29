@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:med_rent/userApp/view/authentication/email_verification_screen.dart';
-import 'package:med_rent/userApp/view/home_Screen.dart';
+import 'package:med_rent/userApp/view/home_screen/home_Screen.dart';
 
 class EmailAuthentication{
   CollectionReference users = FirebaseFirestore.instance.collection('users');

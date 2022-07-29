@@ -9,7 +9,7 @@ import 'package:med_rent/userApp/view/authentication/forgot_password.dart';
 import 'package:med_rent/userApp/view/authentication/phone_auth_screen.dart';
 import 'package:med_rent/userApp/view/categories.dart';
 import 'package:med_rent/userApp/view/home.dart';
-import 'package:med_rent/userApp/view/home_Screen.dart';
+import 'package:med_rent/userApp/view/home_screen/home_Screen.dart';
 import 'package:med_rent/on_boarding_screen.dart';
 import 'package:med_rent/organizationApp/view/dashboard.dart';
 

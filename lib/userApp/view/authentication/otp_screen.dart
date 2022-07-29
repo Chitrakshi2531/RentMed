@@ -1,10 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:med_rent/userApp/controller/phoneauth_services.dart';
 import 'package:med_rent/userApp/view/authentication/phone_auth_screen.dart';
 
-import '../home_Screen.dart';
 
 
 class OTPScreen extends StatefulWidget {

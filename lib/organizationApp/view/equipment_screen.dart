@@ -40,10 +40,10 @@ class _EquipmentScreenState extends State<EquipmentScreen> {
             elevation: 0.0,
             child: Icon(
                 Icons.add,
-                color: Theme.of(context).primaryColor,
+                color: Colors.white,
                 size: 40,
             ),
-            backgroundColor: Colors.white,
+            backgroundColor: Theme.of(context).primaryColor,
             onPressed: (){
               Navigator.pushNamed(context, AddNewProduct.id);
             }
