@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:med_rent/organizationApp/controller/firebase_services.dart';
-import 'package:med_rent/userApp/view/equipment_details.dart';
+import 'package:med_rent/equipment_details.dart';
 import 'package:med_rent/userApp/view/widget/equipment_card.dart';
 
 class EquipmentList extends StatefulWidget {

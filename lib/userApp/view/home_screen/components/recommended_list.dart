@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:med_rent/userApp/view/widget/equipment_card.dart';
 
 import '../../../../organizationApp/controller/firebase_services.dart';
-import '../../equipment_details.dart';
+import '../../../../equipment_details.dart';
 
 class RecommendedList extends StatefulWidget {
   const RecommendedList({Key? key}) : super(key: key);

@@ -15,6 +15,7 @@ class _EquipmentDetailsState extends State<EquipmentDetails> {
     bool _availability = widget.equipment['availability'];
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
