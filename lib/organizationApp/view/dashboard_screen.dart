@@ -90,39 +90,39 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
             ),
             SizedBox(height: 30,),
-            SizedBox(
-              height: size.height * 0.2,
-              width: size.width * 0.7,
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  side: BorderSide(
-                      color: Theme.of(context).primaryColor,
-                      width: 4,
-                  ),
-                ),
-                child: Center(
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Text(
-                            '$rseconds',
-                            style: TextStyle(
-                              fontSize: 40,
-                            )
-                        ),
-                      ),
-                      Text(
-                          'Rented',
-                          style: TextStyle(
-                            fontSize: 20,
-                          ))
-                    ],
-                  ),
-                ),
-              ),
-            )
+            // SizedBox(
+            //   height: size.height * 0.2,
+            //   width: size.width * 0.7,
+            //   child: Card(
+            //     shape: RoundedRectangleBorder(
+            //       borderRadius: BorderRadius.circular(10),
+            //       side: BorderSide(
+            //           color: Theme.of(context).primaryColor,
+            //           width: 4,
+            //       ),
+            //     ),
+            //     child: Center(
+            //       child: Column(
+            //         children: [
+            //           Padding(
+            //             padding: const EdgeInsets.all(20.0),
+            //             child: Text(
+            //                 '$rseconds',
+            //                 style: TextStyle(
+            //                   fontSize: 40,
+            //                 )
+            //             ),
+            //           ),
+            //           Text(
+            //               'Rented',
+            //               style: TextStyle(
+            //                 fontSize: 20,
+            //               ))
+            //         ],
+            //       ),
+            //     ),
+            //   ),
+            // )
           ]
         ),
       ),

@@ -12,9 +12,9 @@ import 'package:med_rent/userApp/view/home.dart';
 import 'package:med_rent/userApp/view/home_screen/home_Screen.dart';
 import 'package:med_rent/on_boarding_screen.dart';
 import 'package:med_rent/organizationApp/view/dashboard.dart';
-
 import '../organizationApp/view/settings_screen.dart';
 import '../userApp/view/settings_screen.dart';
+import 'package:med_rent/userApp/view/home_screen/search_screen.dart';
 
 
 final Map<String,WidgetBuilder> routes = {
@@ -38,4 +38,5 @@ final Map<String,WidgetBuilder> routes = {
   Home.id: (context) => const Home(),
   UserSettings.id :(context) => const UserSettings(),
   Categories.id: (context) => const Categories(),
+  Search.id: (context) => const Search(),
 };

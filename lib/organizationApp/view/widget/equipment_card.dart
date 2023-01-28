@@ -72,11 +72,11 @@ class _EquipmentCardState extends State<EquipmentCard> {
                         ),
                         Row(
                             children: [
-                              IconButton(
-                                icon: Icon(Icons.create_rounded,color: Theme.of(context).primaryColor.withOpacity(0.7),),
-                                iconSize: 25,
-                                onPressed: (){},
-                              ),
+                              // IconButton(
+                              //   icon: Icon(Icons.create_rounded,color: Theme.of(context).primaryColor.withOpacity(0.7),),
+                              //   iconSize: 25,
+                              //   onPressed: (){},
+                              // ),
                               IconButton(
                                 icon: Icon(Icons.delete,color: Theme.of(context).primaryColor.withOpacity(0.7),),
                                 iconSize: 25,

@@ -25,7 +25,7 @@ class _AddNewProductState extends State<AddNewProduct> {
   late String equipmentName;
   late double rent;
   late int quantity;
-  String dropdownvalue = 'Category 1';
+  String dropdownvalue = 'General';
   File? _imageFile;
 
 
@@ -33,6 +33,7 @@ class _AddNewProductState extends State<AddNewProduct> {
   Widget build(BuildContext context) {
 
     var _provider = Provider.of<EquipmentProvider>(context);
+    Size size = MediaQuery.of(context).size;
 
     return Scaffold(
       appBar: PreferredSize(
@@ -74,7 +75,7 @@ class _AddNewProductState extends State<AddNewProduct> {
 
                                 setState((){
                                   _formKey.currentState!.reset();
-                                  dropdownvalue = 'Category 1';
+                                  dropdownvalue = 'General';
                                   _imageFile = null;
                                 });
                               }else{
@@ -177,12 +178,14 @@ class _AddNewProductState extends State<AddNewProduct> {
                                 ),
                                 const SizedBox(height: 10),
                                 Container(
+                                  width: size.width,
                                   decoration: BoxDecoration(
                                       border: Border.all(color: Colors.grey ),
                                       borderRadius: const BorderRadius.all(Radius.circular(5.0))),
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Row(
+                                      mainAxisSize: MainAxisSize.min,
                                       children: [
                                         const Text(
                                           'Category',
@@ -191,26 +194,32 @@ class _AddNewProductState extends State<AddNewProduct> {
                                             fontSize: 16,
                                           ),
                                         ),
-                                        const SizedBox(width: 50,),
-                                        DropdownButton<String>(
-                                          hint: const Text('Select Category',
-                                            style: TextStyle(
-                                              color: Colors.grey,
+                                        const SizedBox(width: 30,),
+                                        SizedBox(
+                                          width: size.width * 0.5,
+                                          child: DropdownButton<String>(
+                                            hint: const Text('Select Category',
+                                              style: TextStyle(
+                                                color: Colors.grey,
+                                              ),
                                             ),
+                                            value:dropdownvalue,
+                                            icon: const Icon(Icons.arrow_drop_down),
+                                            onChanged: (value)=> setState(() {
+                                              dropdownvalue = value!;
+                                            }),
+                                            items: _categories.map<DropdownMenuItem<String>>((String value){
+                                              return DropdownMenuItem<String>(
+                                                value: value,
+                                                child: SizedBox(
+                                                    width: size.width * 0.4,
+                                                    child: Text(value)
+                                                ),
+                                              );
+                                            }).toList(),
+
+
                                           ),
-                                          value:dropdownvalue,
-                                          icon: const Icon(Icons.arrow_drop_down),
-                                          onChanged: (value)=> setState(() {
-                                            dropdownvalue = value!;
-                                          }),
-                                          items: _categories.map<DropdownMenuItem<String>>((String value){
-                                            return DropdownMenuItem<String>(
-                                              value: value,
-                                              child: Text(value),
-                                            );
-                                          }).toList(),
-
-
                                         )
 
                                       ],

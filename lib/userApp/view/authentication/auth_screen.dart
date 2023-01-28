@@ -30,7 +30,7 @@ class AuthScreen extends StatelessWidget {
                     ),
                   ),
                   Container(
-                      height: size.height * 0.40,
+                      height: size.height * 0.35,
                       child: Center(
                         child: Column(
                             mainAxisSize: MainAxisSize.min,
@@ -43,7 +43,7 @@ class AuthScreen extends StatelessWidget {
                                         Navigator.pushNamed(context, PhoneAuthScreen.id);
                                       },
                                       style: ElevatedButton.styleFrom(
-                                        primary: Colors.white,
+                                        backgroundColor: Colors.white,
                                         padding: EdgeInsets.all(10.0),
                                       ),
                                       child: Row(
@@ -72,7 +72,7 @@ class AuthScreen extends StatelessWidget {
                                         Navigator.pushNamed(context, EmailAuthScreen.id);
                                       },
                                       style: ElevatedButton.styleFrom(
-                                        primary: Colors.white,
+                                        backgroundColor: Colors.white,
                                         padding: EdgeInsets.all(10.0),
                                       ),
                                       child: Center(
@@ -115,7 +115,7 @@ class AuthScreen extends StatelessWidget {
                                                   }
                                       },
                                       style: ElevatedButton.styleFrom(
-                                        primary: Colors.white,
+                                        backgroundColor: Colors.white,
                                         padding: EdgeInsets.all(10.0),
                                       ),
                                       child: Row(

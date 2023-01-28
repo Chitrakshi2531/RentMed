@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:med_rent/userApp/view/home_screen/search_screen.dart';
 class Header extends StatefulWidget {
   const Header({Key? key}) : super(key: key);
 
@@ -53,26 +53,25 @@ class _HeaderState extends State<Header> {
               borderRadius: BorderRadius.circular(10),
               color: Colors.white,
             ),
-            child: TextField(
-              cursorColor: Colors.grey,
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(0),
-                fillColor: Colors.red,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide.none,
-                ),
-                hintText: 'Search Equipment',
-                hintStyle: TextStyle(
-                  color: Theme.of(context).primaryColor,
-                  fontSize: 18,
-                ),
-                prefixIcon: Padding(
-                  padding: const EdgeInsets.all(15),
-                  child: Icon(Icons.search,size: 20,color: Theme.of(context).primaryColor,),
-                ),
+            child: InkWell(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Search()),);
+              },
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: Icon(Icons.search,size: 20,color: Theme.of(context).primaryColor,),
+                  ),
+                  Text(
+                    'Search Equipment',
+                    style: TextStyle(
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 18,
+                    ),
+                  ),
+                ],
               ),
-
             ),
           ),
         )
